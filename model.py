@@ -39,7 +39,7 @@ class Book(BaseModel):
 
 class BookUpdate(BaseModel):
     title: Optional[str]
-    author: Optional[str]
+    authors: Optional[list]
     average_rating: Optional[float]
     isbn: Optional[str]
     isbn13: Optional[str]
