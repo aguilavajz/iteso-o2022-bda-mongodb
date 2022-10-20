@@ -91,6 +91,10 @@ def main():
             help="Search parameter to look for books with average rating greater or equal to the param", default=None)
     parser.add_argument("-p", "--pages",
             help="Search parameter to look for books with number of pages greater or equal to the param", default=None)
+    parser.add_argument("-l", "--limit",
+            help="Number of books to display", default=None)
+    parser.add_argument("-o", "--offset",
+            help="Offset of records", default=None)
 
     args = parser.parse_args()
 
