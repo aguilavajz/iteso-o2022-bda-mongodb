@@ -103,7 +103,7 @@ def main():
         exit(1)
 
     if args.action == "search":
-        list_books(args.title, args.avg_rating, args.pages, args.limit, args.offset)
+        list_books(args.title, args.rating, args.pages, args.limit, args.offset)
     elif args.action == "get" and args.id:
         get_book_by_id(args.id)
     elif args.action == "update":
