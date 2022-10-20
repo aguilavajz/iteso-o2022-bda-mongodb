@@ -17,7 +17,7 @@ def create_book(request: Request, book: Book = Body(...)):
     return created_book
 
 @router.get("/", response_description="Get all books", response_model=List[Book])
-def list_books(request: Request, title:str = "", avg_rating: float = 0, limit: int = 5, offset: int = 0, pages:int = 0):
+def list_books(request: Request, title:str = "", avg_rating: float = 0, pages:int = 0, limit: int = 5, offset: int = 0):
     #books = list(request.app.database["books"].find(limit=100))
     #return books
     if title != "":

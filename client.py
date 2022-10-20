@@ -22,12 +22,17 @@ def print_book(book):
     for k in book.keys():
         print(f"{k}: {book[k]}")
     print("="*50)
-def list_books(request: Request, title:str = "", avg_rating: float = 0, limit: int = 5, offset: int = 0, pages:int = 0):
+
+def list_books(title, avg_rating, pages, limit, offset):
 #def list_books(rating):
     suffix = "/book"
     endpoint = BOOKS_API_URL + suffix
     params = {
-        "rating": rating
+        "title": title,
+        "avg_rating": avg_rating,
+        "pages" : pages,
+        "length" : limit,
+        "offset" : offset
     }
     response = requests.get(endpoint, params=params)
     if response.ok:
@@ -80,8 +85,12 @@ def main():
             help="Action to be user for the books library")
     parser.add_argument("-i", "--id",
             help="Provide a book ID which related to the book action", default=None)
+    parser.add_argument("-t", "--title",
+            help="Search parameter to look for books with the title provided", default=None)
     parser.add_argument("-r", "--rating",
-            help="Search parameter to look for books with average rating equal or above the param (0 to 5)", default=None)
+            help="Search parameter to look for books with average rating greater or equal to the param", default=None)
+    parser.add_argument("-p", "--pages",
+            help="Search parameter to look for books with number of pages greater or equal to the param", default=None)
 
     args = parser.parse_args()
 
@@ -94,7 +103,7 @@ def main():
         exit(1)
 
     if args.action == "search":
-        list_books(args.rating)
+        list_books(args.title, args.avg_rating, args.pages, args.limit, args.offset)
     elif args.action == "get" and args.id:
         get_book_by_id(args.id)
     elif args.action == "update":
