@@ -22,8 +22,8 @@ def print_book(book):
     for k in book.keys():
         print(f"{k}: {book[k]}")
     print("="*50)
-
-def list_books(rating):
+def list_books(request: Request, title:str = "", avg_rating: float = 0, limit: int = 5, offset: int = 0, pages:int = 0):
+#def list_books(rating):
     suffix = "/book"
     endpoint = BOOKS_API_URL + suffix
     params = {
